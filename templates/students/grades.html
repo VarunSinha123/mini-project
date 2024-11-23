@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Student Grades{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Academic Performance</h1>
+
+    <div class="grades-summary">
+        <div class="cgpa-section">
+            <h2>Cumulative Performance</h2>
+            <div class="cgpa-display">
+                <span class="cgpa-value">{{ student.cgpa }}</span>
+                <span class="cgpa-label">CGPA</span>
+            </div>
+        </div>
+
+        <div class="semester-grades">
+            <h2>Semester-wise Grades</h2>
+            {% for semester in semester_grades %}
+            <div class="semester-card">
+                <h3>Semester {{ semester.number }}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Grade</th>
+                            <th>Credit Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in semester.courses %}
+                        <tr>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.grade }}</td>
+                            <td>{{ course.credit_points }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Semester GPA</td>
+                            <td>{{ semester.gpa }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

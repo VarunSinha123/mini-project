@@ -1,0 +1,96 @@
+/* static/css/main.css */
+
+/* Root Variables for color scheme */
+:root {
+    --primary-color: #3498db; /* Primary button and link color */
+    --secondary-color: #2ecc71; /* Secondary accent color */
+    --text-color: #333; /* Default text color */
+    --background-color: #f4f4f4; /* Background color */
+    --border-radius: 8px; /* Global border-radius for consistent rounded corners */
+    --transition-duration: 0.3s; /* Transition duration for hover effects */
+}
+
+/* Global Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+/* Container for centering content and providing responsive layout */
+.container {
+    max-width: 1200px; /* Max width for large screens */
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: background-color var(--transition-duration) ease, transform var(--transition-duration) ease;
+}
+
+.btn:hover {
+    background-color: #2980b9; /* Darker shade of primary color */
+    transform: translateY(-3px); /* Adds a subtle hover effect */
+}
+
+.btn:active {
+    transform: translateY(0); /* Reset transform on click */
+}
+
+/* Card Styling */
+.card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow var(--transition-duration) ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .btn {
+        padding: 12px 20px; /* Slightly larger buttons on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 10px 15px; /* Adjust button size for very small screens */
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 15px; /* Adjust padding for small screens */
+    }
+}

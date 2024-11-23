@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-loans">
+    <h1>My Library Loans</h1>
+    
+    {% if loans %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Loan Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr class="{% if loan.is_overdue() %}table-warning{% endif %}">
+                <td>{{ loan.book.title }}</td>
+                <td>{{ loan.book.author }}</td>
+                <td>{{ loan.loan_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ loan.due_date.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    {% if loan.is_overdue() %}
+                    <span class="badge bg-danger">Overdue</span>
+                    {% else %}
+                    <span class="badge bg-success">Active</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#returnBookModal{{ loan.id }}">
+                        Return Book
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Return Book Modal -->
+            <div class="modal fade" id="returnBookModal{{ loan.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Return Book: {{ loan.book.title }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to return this book?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a href="{{ url_for('library.return_book', loan_id=loan.id) }}" class="btn btn-primary">Confirm Return</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">
+        You currently have no active book loans.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

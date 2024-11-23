@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - College Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="hero">
+        <h1>Welcome to College Management System</h1>
+        <p>Streamline administrative tasks, enhance academic productivity</p>
+        
+        {% if not current_user.is_authenticated %}
+        <div class="cta-buttons">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ url_for('auth.register') }}" class="btn btn-secondary">Register</a>
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="features">
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Student Management</h3>
+                <p>Comprehensive student profile and performance tracking</p>
+            </div>
+            <div class="feature-card">
+                <h3>Course Administration</h3>
+                <p>Seamless course and curriculum management</p>
+            </div>
+            <div class="feature-card">
+                <h3>Examination System</h3>
+                <p>Efficient exam scheduling and result processing</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

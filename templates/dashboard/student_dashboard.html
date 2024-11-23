@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="#profile">My Profile</a></li>
+                <li><a href="#courses">My Courses</a></li>
+                <li><a href="#grades">Grades</a></li>
+                <li><a href="#attendance">Attendance</a></li>
+                <li><a href="#fee-status">Fee Status</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-content">
+        <section id="profile">
+            <h2>Student Profile</h2>
+            <div class="profile-card">
+                <img src="{{ current_user.profile_image }}" alt="Profile Picture">
+                <h3>{{ current_user.full_name }}</h3>
+                <p>Enrollment No: {{ current_user.enrollment_number }}</p>
+                <p>Department: {{ current_user.department }}</p>
+            </div>
+        </section>
+
+        <section id="courses">
+            <h2>Current Courses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in current_courses %}
+                    <tr>
+                        <td>{{ course.code }}</td>
+                        <td>{{ course.name }}</td>
+                        <td>{{ course.instructor }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section id="grades">
+            <h2>Academic Performance</h2>
+            <div class="grade-summary">
+                <p>Current CGPA: {{ current_user.cgpa }}</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>GPA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for semester in semester_grades %}
+                        <tr>
+                            <td>{{ semester.name }}</td>
+                            <td>{{ semester.gpa }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

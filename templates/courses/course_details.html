@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container course-details">
+    <div class="course-header">
+        <h1>{{ course.name }}</h1>
+        <span class="course-code">{{ course.code }}</span>
+    </div>
+
+    <div class="course-info">
+        <div class="info-section">
+            <h3>Course Overview</h3>
+            <p>{{ course.description }}</p>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <h4>Department</h4>
+                <p>{{ course.department }}</p>
+            </div>
+            <div class="detail-card">
+                <h4>Credits</h4>
+                <p>{{ course.credits }}</p>
+            </div>
+            <div class="detail-card">
+                <h4>Semester</h4>
+                <p>{{ course.semester }}</p>
+            </div>
+        </div>
+
+        <div class="instructor-section">
+            <h3>Instructor</h3>
+            <div class="instructor-card">
+                <img src="{{ course.instructor.avatar }}" alt="{{ course.instructor.name }}">
+                <div class="instructor-details">
+                    <h4>{{ course.instructor.name }}</h4>
+                    <p>{{ course.instructor.designation }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="syllabus-section">
+            <h3>Course Syllabus</h3>
+            <ul>
+                {% for topic in course.syllabus %}
+                <li>{{ topic }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{{ url_for('course.enroll', course_id=course.id) }}" class="btn btn-primary">Enroll Now</a>
+            <a href="{{ url_for('course.list') }}" class="btn btn-secondary">Back to Course List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

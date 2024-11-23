@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container exam-schedule">
+    <h1>Exam Schedule</h1>
+    
+    <div class="filter-section">
+        <select id="semester-filter">
+            <option value="">All Semesters</option>
+            <option value="spring-2024">Spring 2024</option>
+            <option value="fall-2023">Fall 2023</option>
+        </select>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in exams %}
+            <tr>
+                <td>{{ exam.course_name }}</td>
+                <td>{{ exam.date }}</td>
+                <td>{{ exam.time }}</td>
+                <td>{{ exam.venue }}</td>
+                <td>{{ exam.duration }} minutes</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+/* static/css/responsive.css */
+
+/* General Mobile-First Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Adjust the container for smaller screens */
+    .container {
+        width: 95%; /* Reduced margin for mobile */
+        padding: 15px; /* Add padding to avoid content touching edges */
+    }
+
+    /* Dashboard layout changes for small screens */
+    .dashboard {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 15px; /* Reduce gap between elements */
+    }
+
+    /* Hide the sidebar on smaller screens */
+    .sidebar {
+        display: none;
+    }
+
+    /* Mobile menu toggle button visible */
+    .mobile-menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem; /* Larger font size for better visibility */
+        padding: 10px;
+        background-color: var(--primary-color, #3498db);
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+
+    .mobile-menu-toggle:hover {
+        background-color: #2980b9; /* Darker shade on hover */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Further adjustments for smaller devices */
+    body {
+        font-size: 14px; /* Decrease font size for smaller screens */
+        line-height: 1.5; /* Increase line height for better readability */
+    }
+
+    /* Full-width buttons on small screens */
+    .btn {
+        width: 100%; /* Make buttons take full width */
+        padding: 12px; /* Increase padding for better touch targets */
+        text-align: center; /* Center-align button text */
+        font-size: 16px; /* Adjust font size for buttons */
+    }
+
+    /* Reduce spacing for small screen navigation */
+    .sidebar-nav a {
+        font-size: 14px; /* Slightly smaller font for mobile nav links */
+        padding: 10px; /* Add more padding to increase tap area */
+    }
+
+    /* Adjust header size for better mobile appearance */
+    .dashboard-header h1 {
+        font-size: 1.6rem; /* Decrease font size on very small screens */
+    }
+
+    /* Adjust spacing between content */
+    .dashboard-content {
+        padding: 15px; /* Reduce content padding for mobile */
+    }
+}

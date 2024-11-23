@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Student Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="{{ student.profile_image }}" alt="Profile Picture" class="profile-image">
+            <h1>{{ student.full_name }}</h1>
+        </div>
+
+        <div class="profile-details">
+            <div class="personal-info">
+                <h2>Personal Information</h2>
+                <table>
+                    <tr>
+                        <th>Enrollment Number</th>
+                        <td>{{ student.enrollment_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Department</th>
+                        <td>{{ student.department }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>{{ student.date_of_birth }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact Number</th>
+                        <td>{{ student.contact_number }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="academic-info">
+                <h2>Academic Details</h2>
+                <table>
+                    <tr>
+                        <th>Current Semester</th>
+                        <td>{{ student.current_semester }}</td>
+                    </tr>
+                    <tr>
+                        <th>CGPA</th>
+                        <td>{{ student.cgpa }}</td>
+                    </tr>
+                    <tr>
+                        <th>Graduation Year</th>
+                        <td>{{ student.graduation_year }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{{ url_for('students.edit_profile') }}" class="btn btn-primary">Edit Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
