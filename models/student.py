@@ -1,18 +1,16 @@
-# models/student.py
 from extensions import db
 from datetime import datetime
 
-# Student-Course association table
 student_courses = db.Table('student_courses',
-    db.Column('student_id', db.Integer, db.ForeignKey('student.id'), primary_key=True),
-    db.Column('course_id', db.Integer, db.ForeignKey('course.id'), primary_key=True)
+    db.Column('student_id', db.Integer, db.ForeignKey('students.id'), primary_key=True),
+    db.Column('course_id', db.Integer, db.ForeignKey('courses.id'), primary_key=True)
 )
 
 class Student(db.Model):
-    __tablename__ = 'student'
+    __tablename__ = 'students'
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, unique=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True)
     roll_number = db.Column(db.String(20), unique=True, nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
@@ -24,7 +22,9 @@ class Student(db.Model):
     # Relationships
     user = db.relationship('User', backref=db.backref('student', uselist=False))
     courses = db.relationship('Course', secondary=student_courses, backref=db.backref('students', lazy='dynamic'))
-    examination_results = db.relationship('ExaminationResult', backref='student', lazy=True)
+    
+    # Modified relationship to match ExaminationResult
+    examination_results = db.relationship('ExaminationResult', back_populates='student', lazy=True)
     
     @property
     def name(self):
