@@ -1,4 +1,13 @@
-/* static/css/responsive.css */
+/* Root Variables for Color Scheme */
+:root {
+    --primary-color: #3498db; /* Primary button and link color */
+    --secondary-color: #2ecc71; /* Secondary accent color */
+    --background-color: #f4f4f4; /* Background color */
+    --text-color: #333; /* Text color */
+    --highlight-color: #e74c3c; /* Highlight color */
+    --border-radius: 8px; /* Global border-radius for rounded elements */
+    --transition-duration: 0.3s; /* Transition duration for hover effects */
+}
 
 /* General Mobile-First Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -10,38 +19,39 @@
 
     /* Dashboard layout changes for small screens */
     .dashboard {
-        grid-template-columns: 1fr; /* Stack columns */
+        grid-template-columns: 1fr; /* Stack columns for mobile view */
         gap: 15px; /* Reduce gap between elements */
     }
 
     /* Hide the sidebar on smaller screens */
     .sidebar {
-        display: none;
+        display: none; /* Sidebar hidden */
     }
 
     /* Mobile menu toggle button visible */
     .mobile-menu-toggle {
         display: block;
         cursor: pointer;
-        font-size: 1.5rem; /* Larger font size for better visibility */
-        padding: 10px;
+        font-size: 1.8rem; /* Larger font size for better visibility */
+        padding: 12px;
         background-color: var(--primary-color, #3498db);
         color: white;
-        border-radius: 5px;
+        border-radius: var(--border-radius);
         text-align: center;
         width: 100%;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .mobile-menu-toggle:hover {
         background-color: #2980b9; /* Darker shade on hover */
+        transform: scale(1.05); /* Slightly increase size on hover */
     }
 }
 
 @media screen and (max-width: 480px) {
     /* Further adjustments for smaller devices */
     body {
-        font-size: 14px; /* Decrease font size for smaller screens */
+        font-size: 14px; /* Decrease font size for better readability on small screens */
         line-height: 1.5; /* Increase line height for better readability */
     }
 
@@ -51,21 +61,43 @@
         padding: 12px; /* Increase padding for better touch targets */
         text-align: center; /* Center-align button text */
         font-size: 16px; /* Adjust font size for buttons */
+        border-radius: var(--border-radius);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9; /* Darker shade for hover */
+        transform: translateY(-3px); /* Subtle hover effect */
     }
 
     /* Reduce spacing for small screen navigation */
     .sidebar-nav a {
         font-size: 14px; /* Slightly smaller font for mobile nav links */
-        padding: 10px; /* Add more padding to increase tap area */
+        padding: 12px; /* Add more padding to increase tap area */
+        border-radius: var(--border-radius);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .sidebar-nav a:hover {
+        background-color: #34495e; /* Darker shade on hover */
+        transform: translateX(5px); /* Slide effect on hover */
     }
 
     /* Adjust header size for better mobile appearance */
     .dashboard-header h1 {
         font-size: 1.6rem; /* Decrease font size on very small screens */
+        padding: 0 10px;
+        text-align: center; /* Center-align header for mobile */
     }
 
     /* Adjust spacing between content */
     .dashboard-content {
-        padding: 15px; /* Reduce content padding for mobile */
+        padding: 15px; /* Reduce padding for mobile */
+    }
+
+    /* Mobile view adjustments for badges */
+    .badge {
+        font-size: 12px; /* Reduce font size for badges */
+        padding: 4px 8px; /* Adjust badge padding */
     }
 }

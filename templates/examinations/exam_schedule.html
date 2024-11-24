@@ -1,6 +1,113 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fb;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    /* Exam Schedule Title */
+    h1 {
+        text-align: center;
+        font-size: 36px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    /* Filter Section */
+    .filter-section {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #semester-filter {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #3498db;
+        background-color: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    #semester-filter:focus {
+        outline: none;
+        border-color: #2980b9;
+    }
+
+    /* Table Styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        font-size: 16px;
+    }
+
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    td {
+        background-color: #ecf0f1;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f5f5f5;
+    }
+
+    tr:hover td {
+        background-color: #f39c12;
+        color: white;
+    }
+
+    /* Footer Row for Duration */
+    tfoot {
+        background-color: #f1c40f;
+    }
+
+    tfoot td {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        th, td {
+            font-size: 14px;
+        }
+
+        #semester-filter {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+
 <div class="container exam-schedule">
     <h1>Exam Schedule</h1>
     
@@ -35,4 +142,5 @@
         </tbody>
     </table>
 </div>
+
 {% endblock %}

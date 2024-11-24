@@ -3,6 +3,195 @@
 {% block title %}Student Dashboard{% endblock %}
 
 {% block content %}
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ecf0f1;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .dashboard {
+        display: flex;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+        width: 250px;
+        background-color: #2c3e50;
+        color: white;
+        padding: 20px;
+        height: 100vh;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: width 0.3s ease;
+    }
+
+    .sidebar-nav {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar-nav li {
+        margin: 20px 0;
+    }
+
+    .sidebar-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .sidebar-nav a:hover {
+        background-color: #3498db;
+    }
+
+    /* Main Content */
+    .dashboard-content {
+        flex: 1;
+        padding: 20px;
+        background-color: #ffffff;
+        overflow-y: auto;
+    }
+
+    h2 {
+        color: #2c3e50;
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    /* Profile Card */
+    .profile-card {
+        background-color: #3498db;
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-bottom: 40px;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover {
+        transform: scale(1.05);
+    }
+
+    .profile-card img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid white;
+    }
+
+    .profile-card h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .profile-card p {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    /* Button Styling */
+    .btn {
+        background-color: #27ae60;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2ecc71;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+        font-size: 16px;
+    }
+
+    th {
+        background-color: #2980b9;
+        color: white;
+        border-bottom: 3px solid #2980b9;
+    }
+
+    td {
+        background-color: #ecf0f1;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f5f5f5;
+    }
+
+    tr:hover td {
+        background-color: #f39c12;
+        color: white;
+    }
+
+    /* Grade Summary */
+    .grade-summary {
+        background-color: #f9c922;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .grade-summary p {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .dashboard-content {
+            padding: 10px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+
+        .profile-card h3 {
+            font-size: 20px;
+        }
+
+        .profile-card p {
+            font-size: 14px;
+        }
+    }
+</style>
+
 <div class="dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -75,6 +264,7 @@
         </section>
     </main>
 </div>
+
 {% endblock %}
 
 {% block extra_js %}

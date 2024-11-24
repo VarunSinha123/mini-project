@@ -3,6 +3,141 @@
 {% block title %}Student Grades{% endblock %}
 
 {% block content %}
+<style>
+    /* General styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fb;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    h2, h3 {
+        color: #34495e;
+        margin-bottom: 10px;
+    }
+
+    /* Grades Summary Section */
+    .grades-summary {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+
+    /* CGPA Section */
+    .cgpa-section {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        width: 45%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cgpa-display {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .cgpa-value {
+        font-size: 40px;
+        font-weight: bold;
+        color: #27ae60;
+    }
+
+    .cgpa-label {
+        font-size: 18px;
+        color: #7f8c8d;
+    }
+
+    /* Semester Grades Section */
+    .semester-grades {
+        width: 50%;
+    }
+
+    .semester-card {
+        background-color: #ffffff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 12px 15px;
+    }
+
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    td {
+        background-color: #ecf0f1;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f5f5f5;
+    }
+
+    tr:hover td {
+        background-color: #f39c12;
+        color: white;
+    }
+
+    /* Footer row for semester GPA */
+    tfoot {
+        background-color: #f1c40f;
+    }
+
+    tfoot td {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .grades-summary {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cgpa-section, .semester-grades {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+
+        .cgpa-value {
+            font-size: 32px;
+        }
+    }
+</style>
+
 <div class="container">
     <h1>Academic Performance</h1>
 
@@ -49,4 +184,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

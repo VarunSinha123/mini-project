@@ -4,25 +4,52 @@
 
 {% block extra_css %}
 <style>
-    .login-container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 30px;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    body {
+        background: linear-gradient(45deg, #6a11cb, #2575fc);
         font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+        background-color: #fff;
+        color: #007bff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 70px;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container {
+        max-width: 450px;
+        width: 100%;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .login-container h2 {
         text-align: center;
-        font-size: 24px;
+        font-size: 32px;
         margin-bottom: 30px;
         color: #333;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
     .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .form-group label {
@@ -34,16 +61,19 @@
 
     .form-control {
         width: 100%;
-        padding: 12px;
+        padding: 14px;
+        font-size: 16px;
         border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 14px;
-        margin-top: 5px;
+        border-radius: 8px;
+        margin-top: 6px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
     }
 
     .form-control:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        border-color: #2575fc;
+        box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+        background-color: #fff;
     }
 
     .error {
@@ -54,106 +84,110 @@
 
     .btn {
         width: 100%;
-        padding: 14px;
-        font-size: 16px;
+        padding: 16px;
+        font-size: 18px;
         font-weight: bold;
-        background-color: #007bff;
+        background-color: #2575fc;
         border: none;
-        border-radius: 6px;
+        border-radius: 8px;
         color: white;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .btn:hover {
-        background-color: #0056b3;
+        background-color: #1a59c9;
+        transform: translateY(-2px);
     }
 
     .additional-links {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 25px;
     }
 
     .additional-links a {
         font-size: 14px;
-        color: #007bff;
+        color: #2575fc;
         text-decoration: none;
         margin: 5px;
+        transition: color 0.3s ease;
     }
 
     .additional-links a:hover {
+        color: #1a59c9;
         text-decoration: underline;
     }
 
-    /* Optional: Add a subtle background color to the body */
-    body {
-        background-color: #e9ecef;
-        font-family: 'Arial', sans-serif;
+    .user-role {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 16px;
+        color: #555;
     }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <div class="login-container">
-        <h2>Login to CMS</h2>
-        
-        <form method="POST" action="{{ url_for('auth.login') }}" id="login-form">
-            {{ form.hidden_tag() }}
-            
-            <div class="form-group">
-                {{ form.username.label }}
-                {{ form.username(class="form-control", placeholder="Enter your username") }}
-                {% if form.username.errors %}
-                    <div class="error">
-                        {% for error in form.username.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
+    <div class="logo">CMS</div>
 
-            <div class="form-group">
-                {{ form.password.label }}
-                {{ form.password(class="form-control", placeholder="Enter your password") }}
-                {% if form.password.errors %}
-                    <div class="error">
-                        {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-
-            <div class="form-group">
-                {{ form.remember_me() }} {{ form.remember_me.label }}
-            </div>
-
-            <button type="submit" class="btn btn-primary">Login</button>
-
-            <div class="additional-links">
-                <a href="{{ url_for('auth.forgot_password') }}">Forgot Password?</a>
-                <br>
-                <a href="{{ url_for('auth.register') }}">Create Account</a>
-            </div>
-        </form>
-    </div>
+    {% if current_user.is_authenticated %}
+        <!-- Display user's role -->
+        <div class="user-role">
+            <p>Welcome, {{ current_user.username }}!</p>
+            <p><strong>Your Role:</strong> {{ current_user.role|capitalize }}</p>
+        </div>
+    {% else %}
+        <!-- Login form -->
+        <div class="login-container">
+            <h2>Login to CMS</h2>
+            <form method="POST" action="{{ url_for('auth.login') }}" id="login-form">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control", placeholder="Enter your username") }}
+                    {% if form.username.errors %}
+                        <div class="error">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control", placeholder="Enter your password") }}
+                    {% if form.password.errors %}
+                        <div class="error">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- Role selection (if needed for login) -->
+                <div class="form-group">
+                    {{ form.role.label }}
+                    {{ form.role(class="form-control") }}
+                    {% if form.role.errors %}
+                        <div class="error">
+                            {% for error in form.role.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.remember_me() }} {{ form.remember_me.label }}
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="additional-links">
+                    <a href="{{ url_for('auth.forgot_password') }}">Forgot Password?</a>
+                    <br>
+                    <a href="{{ url_for('auth.register') }}">Create Account</a>
+                </div>
+            </form>
+        </div>
+    {% endif %}
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function(event) {
-        const username = loginForm.username.value;
-        const password = loginForm.password.value;
-        
-        if (!username || !password) {
-            event.preventDefault();
-            alert('Please enter both username and password');
-        }
-    });
-});
-</script>
 {% endblock %}

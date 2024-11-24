@@ -4,25 +4,59 @@
 
 {% block extra_css %}
 <style>
+    /* Global body styling */
+    body {
+        background: linear-gradient(45deg, #6a11cb, #2575fc);
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+    }
+
+    /* Logo styling */
+    .logo {
+        width: 70px;
+        height: 70px;
+        background-color: #fff;
+        color: #007bff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 70px;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Register container styling */
     .register-container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 30px;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        max-width: 450px;
+        width: 100%;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         font-family: 'Arial', sans-serif;
     }
 
+    /* Title styling */
     .register-container h2 {
         text-align: center;
-        font-size: 24px;
+        font-size: 32px;
         margin-bottom: 30px;
         color: #333;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
+    /* Form group and input styling */
     .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .form-group label {
@@ -34,16 +68,20 @@
 
     .form-control {
         width: 100%;
-        padding: 12px;
+        padding: 14px;
+        font-size: 16px;
         border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 14px;
-        margin-top: 5px;
+        border-radius: 8px;
+        margin-top: 6px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .form-control:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        border-color: #2575fc;
+        box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+        background-color: #fff;
     }
 
     .error {
@@ -52,36 +90,41 @@
         margin-top: 5px;
     }
 
+    /* Button styling */
     .btn {
         width: 100%;
-        padding: 14px;
-        font-size: 16px;
+        padding: 16px;
+        font-size: 18px;
         font-weight: bold;
-        background-color: #007bff;
+        background-color: #2575fc;
         border: none;
-        border-radius: 6px;
+        border-radius: 8px;
         color: white;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .btn:hover {
-        background-color: #0056b3;
+        background-color: #1a59c9;
+        transform: translateY(-2px);
     }
 
+    /* Additional links styling */
     .additional-links {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 25px;
     }
 
     .additional-links a {
         font-size: 14px;
-        color: #007bff;
+        color: #2575fc;
         text-decoration: none;
         margin: 5px;
+        transition: color 0.3s ease;
     }
 
     .additional-links a:hover {
+        color: #1a59c9;
         text-decoration: underline;
     }
 
@@ -98,7 +141,7 @@
 
     /* Optional: Add a subtle background color to the body */
     body {
-        background-color: #e9ecef;
+        background-color: #f4f7fc;
         font-family: 'Arial', sans-serif;
     }
 </style>
@@ -106,6 +149,9 @@
 
 {% block content %}
 <div class="container">
+    <!-- Logo added at the top of the page -->
+    <div class="logo">CMS</div>
+    
     <div class="register-container">
         <h2>Create a New Account</h2>
 
@@ -189,6 +235,19 @@
                 {% if form.confirm_password.errors %}
                     <div class="error">
                         {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Role Field -->
+            <div class="form-group">
+                {{ form.role.label }}
+                {{ form.role(class="form-control") }}
+                {% if form.role.errors %}
+                    <div class="error">
+                        {% for error in form.role.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
